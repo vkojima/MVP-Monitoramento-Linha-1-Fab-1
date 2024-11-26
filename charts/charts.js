@@ -248,7 +248,8 @@ function createBalanceChart(ctx, orders) {
     const chart = new Chart(ctx, {
         type: 'bar',
         data: data,
-        options: options
+        options: options,
+        plugins: [dashedLinePlugin],
     });
 
     const filtersContainer = document.getElementById('filters');
@@ -376,8 +377,8 @@ function initializeKPIs(postId, kpis) {
 
 const postsKPIs = {
     // geral0: {oee: 85, id: 90, ie: 75, iq: 80 },
-    posto1: {oee: 85, id: 90, ie: 75, iq: 80 },
-    posto2: {oee: 88, id: 85, ie: 92, iq: 87 },
+    posto1: {oee: 65, id: 80, ie: 81, iq: 99 },
+    posto2: {oee: 77, id: 85, ie: 92, iq: 98 },
     posto3: {oee: 0, id: 0, ie: 0, iq: 0 },
     posto4: {oee: 0, id: 0, ie: 0, iq: 0 },
     posto5: {oee: 0, id: 0, ie: 0, iq: 0 },
