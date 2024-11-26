@@ -1,0 +1,346 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 1920px;
+    max-height: 1080px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #004A8F;
+    padding: 0px 30px;
+    color: white;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 34px;
+}
+
+.logo {
+    height: 60px;
+}
+
+.sim-logo {
+    height: 120px;
+}
+
+.indicators {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 15px;
+    height: 100%;
+}
+
+.indicator-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #efefef;
+    border-radius: 5px;
+    padding: 0 10px;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.indicator-box .gauges {
+    display: flex;
+    flex-wrap: nowrap; 
+    gap: 10px; 
+    justify-content: center;
+    align-items: center;
+    width: 100%; 
+    height: 80px;  
+}
+
+.indicator-box canvas {
+    width: 100%;  
+    height: 100%; 
+    max-width: 100%; 
+    max-height: 100%; 
+    object-fit: contain; 
+    
+}
+
+.production {
+    width: 100%;
+    padding: 10px;
+    max-height: 225px;
+    
+}
+
+.production canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.filters {
+    margin-bottom: 10px;
+    align-items: left;
+}
+
+.filters-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filter-button {
+    padding: 8px 16px;
+    background-color: #004A8F;
+    color: white;
+    gap: 10px;
+    margin: 10px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.filter-button:hover {
+    background-color: #003366;
+}
+
+.balance-chart h1 {
+    margin-bottom: 28px;
+    font-palette: "#666666";
+}
+
+.balance-chart {
+    margin-top: 15px;
+    max-height: 350px;
+    background-color: #efefef;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #333;
+    padding: 15px;
+    padding-bottom: 65px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.process-times {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.process-time-box {
+    width: 300px;
+    height: 50px;
+    margin: 1px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+}
+
+.additional-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); /* Blocos dinâmicos */
+    gap: 20px;
+    padding: 20px;
+    background-color: #efefef;
+    border-radius: 5px;
+    margin-top: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.info-box {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    background-color: #d9d9d9;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.info-box header {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+}
+
+.info-box h2 {
+    margin: 0; 
+}
+
+.info-box .status {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    background-color: #4CAF50; 
+    color: #fff; 
+    border-radius: 5px; 
+    padding: 3px 7px; 
+    font-size: 14px;
+    margin-left: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.info-box p {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.info-box em {
+    background-color: #004A8F;
+    border-radius: 5px;
+    color: #fff;
+    padding: 2px 3px;
+    font-size: 24px;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-style: normal;
+    font-weight: bold
+}
+
+.info-box video, .info-box img {
+    width: 100%;
+    height: 270px;
+    max-height: 300px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    background-color: #333;
+}
+
+.gauges {
+    display: flex; 
+    justify-content: space-around; 
+    align-items: center; 
+    gap: 10px; 
+    width: 100%;
+    border-radius: 10px;
+}
+
+.gauge {
+    width: 100px; 
+    height: 140px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gauge canvas {
+    width: 100%;
+    height: 100%;
+}
+
+
+.charts-container {
+    display: flex; 
+    justify-content: space-around; 
+    align-items: center; 
+    gap: 10px; 
+    width: 100%;
+    padding-bottom: 20px;
+    padding-top: -45px;
+}
+
+.chart-box {
+    width: 100%;
+    max-width: 200px; 
+    aspect-ratio: 1; 
+    background-color: #efefef;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+}
+
+.chart-box canvas, .production canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.process-flow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 13px;
+    background-color: #efefef;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.process-flow p {
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.step {
+    position: relative;
+    width: 12.5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #004A8F;
+}
+
+
+.step.green {
+    background-color: #4CAF50;
+}
+
+.step.red {
+    background-color: #F44336;
+}
+
+.step:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -12px;
+    width: 0;
+    height: 0;
+    border-top: 22px solid transparent;
+    border-bottom: 23px solid transparent;
+    border-left: 15px solid #004A8F;
+    border-radius: 10px;
+}
+
+.step.red:after {
+    border-left: 15px solid #F44336;
+}
+
+.step.step.green:after {
+    border-left: 15px solid #4CAF50;
+}
+
+.step:last-child:after {
+    display: none;
+}
