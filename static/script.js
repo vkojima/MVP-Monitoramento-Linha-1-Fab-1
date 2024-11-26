@@ -1,6 +1,6 @@
 
 const postos = [
-    { id: 1, status: "Operando", video: "http://10.1.60.155:4000/video_feed", tempo_padrao_medio: 0.39, tempo_real_medio: 0.41, qt_produzida: 23, tempo_ciclo: 0.87},
+    { id: 1, status: "Operando", video: "http://10.1.79.119:5000/video_feed", tempo_padrao_medio: 0.39, tempo_real_medio: 0.41, qt_produzida: 23, tempo_ciclo: 0.87},
     { id: 2, status: "Operando", video: "http://10.1.60.183:4000/video_feed", tempo_padrao_medio: 0.45, tempo_real_medio: 0.44, qt_produzida: 20, tempo_ciclo: 1.12},
     { id: 3, status: "Sem conexão", video: "/videos/posto3.mp4", tempo_padrao_medio: 0, tempo_real_medio: 0, qt_produzida: 20, tempo_ciclo: 0},
     { id: 4, status: "Sem conexão", video: "/videos/posto4.mp4", tempo_padrao_medio: 0, tempo_real_medio: 0, qt_produzida: 20, tempo_ciclo: 0},
