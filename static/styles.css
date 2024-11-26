@@ -38,7 +38,7 @@
     display: flex;
     justify-content: space-between;
     align-items: stretch;
-    gap: 15px;
+    gap: 25px;
     height: 100%;
 }
 
@@ -53,7 +53,7 @@
     border-radius: 5px;
     padding: 0 10px;
     width: 100%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 3px 7px 6px rgba(0, 0, 0, 0.1);
 }
 
 .indicator-box .gauges {
@@ -121,7 +121,7 @@
 }
 
 .balance-chart {
-    margin-top: 15px;
+    margin-top: 25px;
     max-height: 350px;
     background-color: #efefef;
     align-items: center;
@@ -132,14 +132,14 @@
     padding: 15px;
     padding-bottom: 65px;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 3px 7px 6px rgba(0, 0, 0, 0.1);
 }
 
 .process-times {
     display: flex;
     justify-content: space-around;
-    margin-top: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 25px;
+    box-shadow: 3px 7px 6px rgba(0, 0, 0, 0.1);
 }
 
 .process-time-box {
@@ -153,12 +153,12 @@
 .additional-info {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); /* Blocos dinâmicos */
-    gap: 20px;
+    gap: 25px;
     padding: 20px;
     background-color: #efefef;
     border-radius: 5px;
-    margin-top: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 25px;
+    box-shadow: 3px 7px 6px rgba(0, 0, 0, 0.1);
 }
 
 .info-box {
@@ -169,7 +169,7 @@
     background-color: #d9d9d9;
     border-radius: 10px;
     padding: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 3px 7px 6px rgba(0, 0, 0, 0.1);
 }
 
 .info-box header {
@@ -196,7 +196,7 @@
     padding: 3px 7px; 
     font-size: 14px;
     margin-left: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 3px 7px 6px rgba(0, 0, 0, 0.1);
 }
 
 .info-box p {
@@ -282,12 +282,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
-    margin-top: 13px;
+    gap: 15px;
+    margin-top: 25px;
     background-color: #efefef;
     padding: 10px 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 3px 7px 6px rgba(0, 0, 0, 0.1);
 }
 
 .process-flow p {
