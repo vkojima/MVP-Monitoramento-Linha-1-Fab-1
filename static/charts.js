@@ -248,7 +248,8 @@ function createBalanceChart(ctx, orders) {
     const chart = new Chart(ctx, {
         type: 'bar',
         data: data,
-        options: options
+        options: options,
+        plugins: [dashedLinePlugin],
     });
 
     const filtersContainer = document.getElementById('filters');
@@ -271,8 +272,7 @@ function createBalanceChart(ctx, orders) {
         filtersContainer.appendChild(button);
     };
 
-    // createFilterButton('Geral');
-    // orders.forEach(order => createFilterButton(order.ordem));
+    orders.forEach(order => createFilterButton(order.ordem));
 
     const debounce = (func, delay) => {
         let timeout;
@@ -369,15 +369,15 @@ function createResponsiveGauge(ctx, value, max, label, color) {
 
 function initializeKPIs(postId, kpis) {
     createResponsiveGauge(document.getElementById(`${postId}-oee`), kpis.oee, 100, 'OEE');
-    createResponsiveGauge(document.getElementById(`${postId}-id`), kpis.id, 100, 'ID');
-    createResponsiveGauge(document.getElementById(`${postId}-ie`), kpis.ie, 100, 'IE');
-    createResponsiveGauge(document.getElementById(`${postId}-iq`), kpis.iq, 100, 'IQ');
+    createResponsiveGauge(document.getElementById(`${postId}-id`), kpis.id, 100, 'ID', '#4caf50');
+    createResponsiveGauge(document.getElementById(`${postId}-ie`), kpis.ie, 100, 'IE', '#ffc600');
+    createResponsiveGauge(document.getElementById(`${postId}-iq`), kpis.iq, 100, 'IQ', '#7f02c7');
 }
 
 const postsKPIs = {
     // geral0: {oee: 85, id: 90, ie: 75, iq: 80 },
-    posto1: {oee: 85, id: 90, ie: 75, iq: 80 },
-    posto2: {oee: 88, id: 85, ie: 92, iq: 87 },
+    posto1: {oee: 65, id: 80, ie: 81, iq: 99 },
+    posto2: {oee: 77, id: 85, ie: 92, iq: 98 },
     posto3: {oee: 0, id: 0, ie: 0, iq: 0 },
     posto4: {oee: 0, id: 0, ie: 0, iq: 0 },
     posto5: {oee: 0, id: 0, ie: 0, iq: 0 },
@@ -401,8 +401,8 @@ const ctx5 = document.getElementById('pcs').getContext('2d');
 
 // balance(ctx0);
 createGaugeChart(document.getElementById('oee').getContext('2d'), 75, 100, 'OEE')
-createGaugeChart(document.getElementById('id').getContext('2d'), 85, 100, 'ID') //  , '#4caf50'
-createGaugeChart(document.getElementById('ie').getContext('2d'), 91, 100, 'IE') //  , '#ffc600'
-createGaugeChart(document.getElementById('iq').getContext('2d'), 97, 100, 'IQ') //  , '#7f02c7'
+createGaugeChart(document.getElementById('id').getContext('2d'), 85, 100, 'ID', '#4caf50') //  
+createGaugeChart(document.getElementById('ie').getContext('2d'), 91, 100, 'IE', '#ffc600') //  
+createGaugeChart(document.getElementById('iq').getContext('2d'), 97, 100, 'IQ', '#7f02c7') //  
 
 pcsMotor(ctx5)

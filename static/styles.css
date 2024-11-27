@@ -38,7 +38,7 @@
     display: flex;
     justify-content: space-between;
     align-items: stretch;
-    gap: 10px;
+    gap: 25px;
     height: 100%;
 }
 
@@ -49,11 +49,11 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-color: #ececec;
+    background-color: #efefef;
     border-radius: 5px;
     padding: 0 10px;
     width: 100%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 3px 7px 6px rgba(0, 0, 0, 0.1);
 }
 
 .indicator-box .gauges {
@@ -116,30 +116,30 @@
 }
 
 .balance-chart h1 {
-    margin-bottom: 28px;
-    font-palette: "#666666";
+    color: "#FFFFFF";
 }
 
 .balance-chart {
-    margin-top: 15px;
+    margin-top: 25px;
     max-height: 350px;
-    background-color: #ececec;
+    background-color: #efefef;
     align-items: center;
     justify-content: center;
     border-radius: 5px;
     font-weight: bold;
-    color: #333;
+    color: #666;
+    font-size: 18px;
     padding: 15px;
     padding-bottom: 65px;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 3px 7px 6px rgba(0, 0, 0, 0.1);
 }
 
 .process-times {
     display: flex;
     justify-content: space-around;
-    margin-top: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 25px;
+    box-shadow: 3px 7px 6px rgba(0, 0, 0, 0.1);
 }
 
 .process-time-box {
@@ -148,17 +148,17 @@
     margin: 1px;
     background-color: #e0e0e0;
     border-radius: 5px;
-    
 }
 
 .additional-info {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); /* Blocos dinâmicos */
-    gap: 20px;
+    gap: 25px;
     padding: 20px;
-    background-color: #ececec;
+    background-color: #efefef;
     border-radius: 5px;
-    margin-top: 15px;
+    margin-top: 25px;
+    box-shadow: 3px 7px 6px rgba(0, 0, 0, 0.1);
 }
 
 .info-box {
@@ -169,13 +169,13 @@
     background-color: #d9d9d9;
     border-radius: 10px;
     padding: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 3px 7px 6px rgba(0, 0, 0, 0.1);
 }
 
 .info-box header {
-    font-size: 18px;
-    font-weight: bold;
     color: #333;
+    font-size: 16px;
+    font-weight: bold;
     margin-bottom: 10px;
     text-align: left;
     display: flex;
@@ -196,6 +196,7 @@
     padding: 3px 7px; 
     font-size: 14px;
     margin-left: 15px;
+    box-shadow: 3px 7px 6px rgba(0, 0, 0, 0.1);
 }
 
 .info-box p {
@@ -264,7 +265,7 @@
     width: 100%;
     max-width: 200px; 
     aspect-ratio: 1; 
-    background-color: #ececec;
+    background-color: #efefef;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -281,11 +282,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
-    margin-top: 13px;
-    background-color: #ececec;
+    gap: 15px;
+    margin-top: 25px;
+    background-color: #efefef;
     padding: 10px 20px;
     border-radius: 10px;
+    box-shadow: 3px 7px 6px rgba(0, 0, 0, 0.1);
 }
 
 .process-flow p {
@@ -315,7 +317,11 @@
 }
 
 .step.red {
-    background-color: #F44336;
+    background-color: #ff4a3d;
+}
+
+.step.grey{
+    background-color: #a5a5a5;
 }
 
 .step:after {
@@ -332,11 +338,15 @@
 }
 
 .step.red:after {
-    border-left: 15px solid #F44336;
+    border-left: 15px solid #ff4a3d;
 }
 
 .step.step.green:after {
     border-left: 15px solid #4CAF50;
+}
+
+.step.grey::after {
+    border-left: 15px solid #a5a5a5;
 }
 
 .step:last-child:after {
