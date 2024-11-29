@@ -1,0 +1,6 @@
+*.txt
+*.pt
+*.jpg
+**/__pycache__/
+pt/
+sql/
