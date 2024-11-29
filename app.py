@@ -2,7 +2,6 @@
 from flask import Flask, render_template, Response, jsonify
 from multiprocessing import Process, Manager
 from camera_process import camera_worker
-import json
 import cv2
 import time
 
@@ -41,8 +40,8 @@ def video_feed(cam_id: int):
 if __name__ == '__main__':
     # 1. CONFIGURAÇÃO DAS CÂMERAS
     camera_configs = [
-    {"id": 1, "ip": "http://10.1.60.155:4000/video_feed", "roi_points": [[410, 175], [600, 175], [600, 450], [410, 450]]},  # roi_points = [superior esquerdo, inferior esquerdo, superior direito, inferior direito]
-    {"id": 2, "ip": "http://10.1.60.183:4000/video_feed", "roi_points": [[800, 200], [1000, 200], [1000, 400], [800, 400]]},]
+    {"id": 1, "ip": "http://10.1.60.155:4000/video_feed", "roi_points": [[405, 215], [700, 215], [700, 440], [420, 440]]},  # roi_points = [superior esquerdo, inferior esquerdo, superior direito, inferior direito]
+    {"id": 2, "ip": "http://10.1.60.183:4000/video_feed", "roi_points": [[390, 290], [550, 290], [550, 450], [390, 450]]},]
 
     manager = Manager()
     camera_data = manager.dict()
@@ -59,7 +58,7 @@ if __name__ == '__main__':
         time.sleep(0.1)
 
     try:
-        app.run(host='0.0.0.0', port=5000, debug=True)
+        app.run(host='0.0.0.0', port=5000, debug=False)
     finally:
         for p in processes:
             p.terminate()

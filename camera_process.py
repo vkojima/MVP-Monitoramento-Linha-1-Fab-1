@@ -19,8 +19,7 @@ def camera_worker(cam_config: dict, camera_data: dict, camera_frames: dict) -> N
         roi_points = np.array(cam_config['roi_points'], dtype=np.int32)
 
         cap = cv2.VideoCapture(ip)
-        model = YOLO('yolo_detect/train/runs/runs_yolo11n/train11/weights/best.pt')
-
+        model = YOLO(r'C:\Users\gustavonc\Documents\2-Programs\6-WSFM_Montagem\trasmisoes_linha_montagem\yolo_detect_v1\pt\modelo_colab_full_dataset_24_10.pt')
         object_tracker = {} 
         object_id = 0       
         qtd_produzida = 0
@@ -29,7 +28,7 @@ def camera_worker(cam_config: dict, camera_data: dict, camera_frames: dict) -> N
         while True:
             ret, frame = cap.read()
             if ret:
-                results = model.predict(frame, iou=0.2, conf=0.4)
+                results = model.predict(frame, iou=0.2, conf=0.4, verbose=False)
                 detections = results[0]
 
                 annotated_frame = frame.copy()
