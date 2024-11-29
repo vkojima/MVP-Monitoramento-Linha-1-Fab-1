@@ -1,4 +1,4 @@
-// charts/charts.js
+// static/charts.js
 
 function createGaugeChart(ctx, value, max, label, color) {
     if (!color) {
@@ -283,18 +283,16 @@ function createBalanceChart(ctx, orders) {
     };
 
     const handleResize = debounce(() => {
-        const barThickness = calculateBarThickness();
-        chart.data.datasets.forEach(dataset => {
-            dataset.barThickness = barThickness;
-        });
+        // const barThickness = calculateBarThickness(); // ! Está dando erro
+        // chart.data.datasets.forEach(dataset => {
+        //     dataset.barThickness = barThickness;
+        // });
         chart.resize();
         chart.update();
     }, 200);
 
     window.addEventListener('resize', handleResize);
 }
-
-
 
 function createResponsiveGauge(ctx, value, max, label, color) {
     const parent = ctx.parentNode;
@@ -374,20 +372,21 @@ function initializeKPIs(postId, kpis) {
     createResponsiveGauge(document.getElementById(`${postId}-iq`), kpis.iq, 100, 'IQ', '#7f02c7');
 }
 
-const postsKPIs = {
-    // geral0: {oee: 85, id: 90, ie: 75, iq: 80 },
-    posto1: {oee: 65, id: 80, ie: 81, iq: 99 },
-    posto2: {oee: 77, id: 85, ie: 92, iq: 98 },
-    posto3: {oee: 0, id: 0, ie: 0, iq: 0 },
-    posto4: {oee: 0, id: 0, ie: 0, iq: 0 },
-    posto5: {oee: 0, id: 0, ie: 0, iq: 0 },
-    posto6: {oee: 0, id: 0, ie: 0, iq: 0 },
-    posto7: {oee: 0, id: 0, ie: 0, iq: 0 },
-};
 
-Object.entries(postsKPIs).forEach(([postId, kpis]) => {
-    initializeKPIs(postId, kpis);
-});
+// const postsKPIs = {
+//     // geral0: {oee: 85, id: 90, ie: 75, iq: 80 },
+//     posto1: {oee: 65, id: 80, ie: 81, iq: 99 },
+//     posto2: {oee: 77, id: 85, ie: 92, iq: 98 },
+//     posto3: {oee: 0, id: 0, ie: 0, iq: 0 },
+//     posto4: {oee: 0, id: 0, ie: 0, iq: 0 },
+//     posto5: {oee: 0, id: 0, ie: 0, iq: 0 },
+//     posto6: {oee: 0, id: 0, ie: 0, iq: 0 },
+//     posto7: {oee: 0, id: 0, ie: 0, iq: 0 },
+// };
+
+// Object.entries(postsKPIs).forEach(([postId, kpis]) => {
+//     initializeKPIs(postId, kpis);
+// });
 
 createBalanceChart(document.getElementById('balance').getContext('2d'), orders = [
     { ordem: 'Geral', data: [12, 14, 16, 18, 20, 22, 24], color: '#005cb4' },
@@ -406,3 +405,13 @@ createGaugeChart(document.getElementById('ie').getContext('2d'), 91, 100, 'IE', 
 createGaugeChart(document.getElementById('iq').getContext('2d'), 97, 100, 'IQ', '#7f02c7') //  
 
 pcsMotor(ctx5)
+
+function updateCharts(data) {
+    // Atualize seus gráficos aqui com os novos dados
+
+    // Exemplo: Atualizar gráfico de barras de tempos
+    tempoChart.data.datasets[0].data = [data.tempo_ocioso, data.tempo_trabalhado];
+    tempoChart.update();
+
+    // Atualizar outros gráficos conforme necessário
+}
