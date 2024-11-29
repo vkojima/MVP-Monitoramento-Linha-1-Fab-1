@@ -18,8 +18,13 @@ def get_camera_data():
     return jsonify(list(camera_data.values()))
 
 @app.route('/video_feed/<int:cam_id>')
-def video_feed(cam_id):
+def video_feed(cam_id: int):
     def generate():
+        '''
+        Rota do Flask para servir a página de video de cada camera.
+        
+        :param cam_id (int): id da camera
+        '''
         while True:
             frame = camera_frames.get(cam_id)
             if frame is not None:
@@ -36,15 +41,14 @@ def video_feed(cam_id):
 if __name__ == '__main__':
     # 1. CONFIGURAÇÃO DAS CÂMERAS
     camera_configs = [
-    {"id": 1, "ip": "http://10.1.60.155:4000/video_feed"},
-    {"id": 2, "ip": "http://10.1.60.183:4000/video_feed"},]
+    {"id": 1, "ip": "http://10.1.60.155:4000/video_feed", "roi_points": [[410, 175], [600, 175], [600, 450], [410, 450]]},  # roi_points = [superior esquerdo, inferior esquerdo, superior direito, inferior direito]
+    {"id": 2, "ip": "http://10.1.60.183:4000/video_feed", "roi_points": [[800, 200], [1000, 200], [1000, 400], [800, 400]]},]
 
     manager = Manager()
     camera_data = manager.dict()
     camera_frames = manager.dict()
 
     # 2. INICIALIZAÇÃO DAS CÂMERAS
-    print("Iniciando câmeras...")
     processes = []
     for cam_config in camera_configs:
         print("Iniciando câmera ", cam_config['id'])
