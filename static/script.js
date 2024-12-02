@@ -36,6 +36,16 @@ function loadCameraData() {
                     ie: posto.ie || 0,
                     iq: posto.iq || 0
                 });
+                
+                sendDataToServer({
+                    posto: postoId,
+                    data: postoData.Data,
+                    hora: postoData.Hora,
+                    qtd: postoData.Quantidade,
+                    oee: oeeValue,
+                    id: idValue,
+                    ie: ieValue,
+                    iq: iqValue
             });
 
             updateStatusColors();
