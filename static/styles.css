@@ -52,7 +52,7 @@
     text-align: center;
     background-color: #efefef;
     border-radius: 5px;
-    padding: 0 10px;
+    padding: 0 15px;
     width: 100%;
     box-shadow: 3px 7px 6px rgba(0, 0, 0, 0.1);
 }
@@ -60,7 +60,7 @@
 .indicator-box .gauges {
     display: flex;
     flex-wrap: nowrap; 
-    gap: 10px; 
+    gap: 15px; 
     justify-content: center;
     align-items: center;
     width: 100%; 
@@ -74,6 +74,14 @@
     max-height: 100%; 
     object-fit: contain; 
     
+}
+
+.indicator-box:first-child {
+    flex: 55; 
+}
+
+.indicator-box:last-child {
+    flex: 45; 
 }
 
 .production {
@@ -233,7 +241,7 @@
     display: flex; 
     justify-content: space-around; 
     align-items: center; 
-    gap: 10px; 
+    gap: 0px; 
     width: 100%;
     border-radius: 10px;
 }
@@ -277,6 +285,11 @@
 .chart-box canvas, .production canvas {
     width: 100%;
     height: 100%;
+}
+
+.chart-box .oee_gargalo {
+    width: 100%;
+    display: list-item;
 }
 
 .process-flow {
