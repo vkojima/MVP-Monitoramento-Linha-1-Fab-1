@@ -5,6 +5,7 @@ import csv
 import os
 import time
 from datetime import datetime
+from itertools import groupby
 
 app = Flask(__name__)
 CORS(app)
@@ -144,6 +145,62 @@ def get_csv_data():
         print(f"Erro ao converter para JSON: {e}")
         print("Dados a serem enviados:", data)
         return jsonify({"status": "fail", "message": "Error converting data to JSON"}), 500
+
+@app.route('/get_posto_ids', methods=['GET'])
+def get_posto_ids():
+    csv_file = FILE_PATH
+    if not os.path.isfile(csv_file):
+        return jsonify({"status": "fail", "message": "CSV file not found"}), 404
+
+    try:
+        with open(csv_file, mode='r', encoding='utf-8') as file:
+            reader = csv.DictReader(file)
+            data = list(reader)
+
+        for row in data:
+            row['Timestamp'] = datetime.strptime(row['Timestamp'], "%Y-%m-%d %H:%M:%S")
+            row['Status'] = row['Status'].lower() in ['true', '1']
+
+        turno_inicio = request.args.get("turno_inicio", "14:00:00")
+        turno_fim = request.args.get("turno_fim", "22:00:00")
+
+        turno_inicio_dt = datetime.strptime(turno_inicio, "%H:%M:%S").time()
+        turno_fim_dt = datetime.strptime(turno_fim, "%H:%M:%S").time()
+
+        def is_in_turno(timestamp):
+            hora = timestamp.time()
+            if turno_inicio_dt < turno_fim_dt:  
+                return turno_inicio_dt <= hora <= turno_fim_dt
+            else:  
+                return hora >= turno_inicio_dt or hora <= turno_fim_dt
+
+        ids_por_posto = {}
+        for posto, grupo in groupby(sorted(data, key=lambda x: (x['Posto'], x['Timestamp'])), key=lambda x: x['Posto']):
+            grupo = list(filter(lambda x: is_in_turno(x['Timestamp']), grupo))
+            if len(grupo) < 2:
+                ids_por_posto[posto] = 0
+                continue
+
+            tempo_total = 0
+            tempo_operando = 0
+
+            for i in range(len(grupo) - 1):
+                t1 = grupo[i]['Timestamp']
+                t2 = grupo[i + 1]['Timestamp']
+                status = grupo[i]['Status']
+                intervalo = (t2 - t1).total_seconds()
+
+                tempo_total += intervalo
+                if status:
+                    tempo_operando += intervalo
+
+            ids_por_posto[posto] = (tempo_operando / tempo_total) * 100 if tempo_total > 0 else 0
+
+        return jsonify({"status": "success", "ids": ids_por_posto}), 200
+
+    except Exception as e:
+        print(f"Erro ao calcular IDs: {e}")
+        return jsonify({"status": "fail", "message": "Error calculating IDs"}), 500
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=False)
