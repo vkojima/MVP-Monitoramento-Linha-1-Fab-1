@@ -42,6 +42,9 @@ function initializeProducedPiecesChart(ctx) {
                 },
             },
         },
+        animation : {
+            duration : 0,
+        },
         scales: {
             x: {
                 beginAtZero: true,
@@ -94,6 +97,9 @@ function initializeBalanceChart(ctx) {
                 },
             }
         },
+        animation : {
+            duration : 0,
+        },
         scales: {
             x: {
                 beginAtZero: true,
@@ -103,7 +109,10 @@ function initializeBalanceChart(ctx) {
                     display: false,
                 },
                 ticks: {
-                }
+                    font: {
+                        size: 14,
+                    },
+                },
             },
             y: {
                 beginAtZero: true
@@ -111,25 +120,80 @@ function initializeBalanceChart(ctx) {
         }
     };
 
+    const dashedLinePlugin = {
+        id: 'dashedLinePlugin',
+        afterDraw(chart) {
+            const { ctx, scales } = chart;
+            const yAxis = scales.y;
+            const xAxis = scales.x;
+            const value = 0.5;
+    
+            const yPosition = yAxis.getPixelForValue(value);
+    
+            ctx.save();
+            ctx.strokeStyle = 'red'; 
+            ctx.setLineDash([5, 5]); 
+            ctx.lineWidth = 2;
+    
+            ctx.beginPath();
+            ctx.moveTo(xAxis.left, yPosition); 
+            ctx.lineTo(xAxis.right, yPosition); 
+            ctx.stroke();
+    
+            ctx.restore();
+        }
+    };
+
     return new Chart(ctx, {
         type: 'bar',
         data: data,
         options: options,
+        plugins: [dashedLinePlugin],
     });
 }
 
 function initializeKPIs(postId, kpis) {
-    if (charts[postId]) {
-        Object.values(charts[postId]).forEach(chart => chart.destroy());
+    if (!charts[postId]) {
+        charts[postId] = {}; // Inicializa o objeto de charts se ainda não existir
     }
 
-    charts[postId] = {
-        oee: createResponsiveGauge(document.getElementById(`${postId}-oee`), kpis.oee, 100, 'OEE'),
-        id:  createResponsiveGauge(document.getElementById(`${postId}-id`), kpis.id, 100, 'ID', '#4caf50'),
-        ie:  createResponsiveGauge(document.getElementById(`${postId}-ie`), kpis.ie, 100, 'IE', '#ffc600'),
-        iq:  createResponsiveGauge(document.getElementById(`${postId}-iq`), kpis.iq, 100, 'IQ', '#7f02c7')
-    };
+    Object.entries(kpis).forEach(([key, value]) => {
+        if (value !== undefined && value !== null) {
+            // Destrói o chart existente apenas se o KPI for atualizado
+            if (charts[postId][key]) {
+                charts[postId][key].destroy();
+            }
+
+            // Cria um novo chart apenas para o KPI atualizado
+            const elementId = `${postId}-${key}`;
+            let label = key.toUpperCase();
+            let color;
+
+            switch (key) {
+                case 'id':
+                    color = '#4caf50';
+                    break;
+                case 'ie':
+                    color = '#ffc600';
+                    break;
+                case 'iq':
+                    color = '#7f02c7';
+                    break;
+                default:
+                    color = undefined;
+            }
+
+            charts[postId][key] = createResponsiveGauge(
+                document.getElementById(elementId),
+                value,
+                100,
+                label,
+                color
+            );
+        }
+    });
 }
+
 
 charts.producedPieces = initializeProducedPiecesChart(document.getElementById('produced-pieces-chart').getContext('2d'));
 charts.balanceChart = initializeBalanceChart(document.getElementById('balance').getContext('2d'));

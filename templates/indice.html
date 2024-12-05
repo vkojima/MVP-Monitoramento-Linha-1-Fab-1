@@ -8,41 +8,29 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
-    <link rel="stylesheet" href="static/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>
+    <link rel="stylesheet" href="../static/styles.css">
 </head>
 <body>
     <header class="header">
-        <img src="static/imgs/brand-white.svg" alt="Logo" class="logo">
+        <img src="../static/imgs/brand-white.svg" alt="Logo" class="logo">
         <h1>BALANCEAMENTO - LINHA DE MONTAGEM 1</h1>
-        <img src="static/imgs/sim_logo.png" alt="Sistema Integrados de Manufatura" class="sim-logo">
+        <img src="../static/imgs/sim_logo.png" alt="Sistema Integrados de Manufatura" class="sim-logo">
     </header>
     
     <div class="container">
         <section class="indicators">
             <div class="indicator-box">
                 <div class="charts-container">
+                    <div class="chart-box"><canvas id="oee_gargalo">Posto</canvas></div>
                     <div class="chart-box"><canvas id="oee"></canvas></div>
                     <div class="chart-box"><canvas id="id"></canvas></div>
                     <div class="chart-box"><canvas id="ie"></canvas></div>
                     <div class="chart-box"><canvas id="iq"></canvas></div>
                 </div>
-                <!-- <div class="gauges">
-                    <div class="gauge">
-                        <canvas id="posto1-oee"></canvas>
-                    </div>
-                    <div class="gauge">
-                        <canvas id="posto1-id"></canvas>
-                    </div>
-                    <div class="gauge">
-                        <canvas id="posto1-ie"></canvas>
-                    </div>
-                    <div class="gauge">
-                        <canvas id="posto1-iq"></canvas>
-                    </div>
-                </div> -->
             </div>
             <div class="indicator-box">
-                <div class="production"><canvas id="pcs"></canvas></div>
+                <div class="production"><canvas id="produced-pieces-chart"></canvas></div>
             </div>
         </section>
         
@@ -52,12 +40,22 @@
             <canvas id="balance"></canvas>
         </section>
         
-        <section class="process-flow" id="process-flow"></section>
+        <div class="process-flow">
+            <div class="step" id="flow-Posto1">Posto 1</div>
+            <div class="step" id="flow-Posto2">Posto 2</div>
+            <div class="step" id="flow-Posto3">Posto 3</div>
+            <div class="step" id="flow-Posto4">Posto 4</div>
+            <div class="step" id="flow-Posto5">Posto 5</div>
+            <div class="step" id="flow-Posto6">Posto 6</div>
+            <p>Tempo total = 0.00s</p>
+        </div>
 
         <section class="additional-info" id="additional-info"></section>
 
     </div>
-    <script src="static/script.js"></script>
-    <script src="static/charts.js"></script>
+    <script src="../static/script.js"></script>
+    <script src="../static/charts.js"></script>
+    <script src="../static/charts_initializers.js"></script>
+    <script src="../static/charts_updaters.js"></script>
 </body>
 </html>
