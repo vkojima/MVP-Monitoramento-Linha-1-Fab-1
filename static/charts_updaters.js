@@ -99,7 +99,6 @@ function updateGeneralGaugeChart(chart, newValue, max = 100) {
 
 function updateGeneralChartsFromPostos(postos) {
     const geralData = calculateGeneralData(postos);
-    console.log(geralData)
 
     if (charts.oeeGeral) updateGeneralGaugeChart(charts.oeeGeral, geralData.OEE, 100);
     if (charts.oeeGargalo) updateGeneralGaugeChart(charts.oeeGargalo, geralData.OEEgargalo, 100);

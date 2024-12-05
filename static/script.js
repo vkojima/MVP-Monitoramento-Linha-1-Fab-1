@@ -101,8 +101,8 @@ function processCameraData(data) {
                 iq: parseFloat(postoData.IQ.replace('%', '')) || 0
             });
         }
-
-        const status = postoData.Status ? "Operando" : "Parado";
+        
+        const status = postoData.Status;
         infoBox.querySelector('.status').textContent = status;
 
         updateStatusColors();
@@ -182,7 +182,7 @@ function updateStatusColors() {
         } else if (statusText === "Operando") {
             status.style.backgroundColor = "#4CAF50"; 
             status.style.color = "#fff"; 
-        } else if (statusText === "Sem conexão") {
+        } else if (statusText === "Sem conexao") {
             status.style.backgroundColor = "#666";
             status.style.color = "#fff";
         }
