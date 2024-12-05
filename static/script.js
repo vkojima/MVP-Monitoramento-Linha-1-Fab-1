@@ -56,12 +56,23 @@ function processCameraData(data) {
             infoBox.className = 'info-box';
             infoBox.id = infoBoxId;
 
+            const cameraURLs = {
+                Posto1: "http://10.1.60.155:4000/video_feed",
+                Posto2: "http://10.1.60.183:4000/video_feed",
+                // Posto3: "http://10.1.60.156:4000/video_feed",
+                // Posto4: "http://10.1.60.157:4000/video_feed",
+                // Posto5: "http://10.1.60.158:4000/video_feed",
+                // Posto6: "http://10.1.60.159:4000/video_feed",
+            };
+            
+            let cameraURL = cameraURLs[postoKey] || "/video_feed/default"; // URL padrão, se não houver mapeamento
+
             infoBox.innerHTML = `
                 <header>
                     <h2>Posto ${postoId}</h2>
                     <div class="status"></div>
                 </header>
-                <img src="/video_feed/${postoId}" alt="Câmera ao Vivo">
+                <img src="${cameraURL}" alt="Câmera ao Vivo">
                 <div class="gauges">
                     <div class="gauge"><canvas id="posto${postoId}-oee"></canvas></div>
                     <div class="gauge"><canvas id="posto${postoId}-id"></canvas></div>
@@ -72,6 +83,7 @@ function processCameraData(data) {
                 <p>Qtd. Produzida: <em>${postoData.Quantidade}</em></p>
                 <p>Ordem: <em>${postoData.Ordem}</em></p>
             `;
+
 
             document.getElementById('additional-info').appendChild(infoBox);
 
