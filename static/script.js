@@ -342,6 +342,15 @@ function recalculateIDs(postos) {
     return recalculatedIDs;
 }
 
+function updateStatusBar() {
+    const now = new Date();
+    const formattedDate = now.toLocaleDateString('pt-BR');
+    const formattedTime = now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    document.getElementById('status-datetime').textContent = `Data: ${formattedDate} | Hora: ${formattedTime} | ${getCurrentShift().name}`;
+}
+
+setInterval(updateStatusBar, 1000);
+
 window.onload = function() {
     loadCameraData();
     setInterval(loadCameraData, 10000); 
